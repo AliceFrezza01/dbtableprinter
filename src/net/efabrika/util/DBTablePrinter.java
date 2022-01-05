@@ -485,10 +485,12 @@ public class DBTablePrinter {
                             // after the point. THIS IS TOTALLY ARBITRARY and can be
                             // improved to be CONFIGURABLE.
                             if (!value.equals("NULL")) {
-                                Double dValue = rs.getDouble(i+1);
-                                value = String.format("%.3f", dValue);
+                                if (!(value.endsWith("€") || value.endsWith("$") || value.endsWith("£"))) {
+                                    Double dValue = rs.getDouble(i + 1);
+                                    value = String.format("%.3f", dValue);
+                                    break;
+                                }
                             }
-                            break;
 
                         case CATEGORY_STRING:
 
